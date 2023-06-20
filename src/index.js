@@ -1,4 +1,4 @@
-const socket = io('http://localhost:5000')
+const socket = io('https://chat-app-by-jeswin.onrender.com:5000')
 const messageContainer = document.querySelector('.message-container');
 const input = document.getElementById('input');
 const send = document.getElementById('send');
