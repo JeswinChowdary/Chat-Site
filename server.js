@@ -1,12 +1,17 @@
 const express = require('express');
-const io = require('socket.io')(5000, {
-  cors: {
-    origin: 'http://localhost:3000',
-    methods: ['GET', 'POST'],
-  },
-});
 const app = express();
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require('socket.io')
+const port = 5000;
+const io = new Server(server, {
+  cors: {
+    origin: ['http://localhost:5000', 'https://chat-app-by-jeswin.onrender.com']
+  }
+});
 
+
+app.use(express.static('./src'));
 
 
 io.on('connection', socket => {
@@ -16,3 +21,5 @@ io.on('connection', socket => {
     socket.broadcast.emit('chat-message', msg);
   })
 });
+
+server.listen(port, console.log(`Port: ${port}`))

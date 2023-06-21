@@ -1,8 +1,8 @@
-const socket = io('https://chat-app-by-jeswin.onrender.com:5000')
+const socket = io('http://localhost:5000/');
 const messageContainer = document.querySelector('.message-container');
 const input = document.getElementById('input');
 const send = document.getElementById('send');
-const name = window.prompt('What is your name?');
+const userName = window.prompt('What is your name?');
 
 function displayMessage(msg) {
   console.log(msg)
@@ -16,10 +16,10 @@ socket.on('chat-message', (msg) => {
 });
 
 send.addEventListener('click', () => {
-  const message = `${name}: ${input.value}`;
+  const message = `${userName}: ${input.value}`;
 
   displayMessage(message);
 
   socket.emit('chat-message', message);
-  message.value = '';
+  input.value = '';
 })
