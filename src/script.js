@@ -70,8 +70,7 @@ sendButton.addEventListener('click', e => {
     canSend = false;
     setTimeout(() => {
         canSend = true;
-    }, 4000);
-      const input = document.getElementById('input')
-      input.value = ''
+    }, 2000);
+      input.value = '';
     
 })
