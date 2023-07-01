@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: url('../background.jpg');
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;;
+    width: 90%;
+    gap: 15px;
+}
+.message {
+    width: 100%;
+    padding: 20px;
+    height: 2rem;
+    background: white;
+    display: flex;
+    flex-direction: column;
+}
+.message:nth-child(even) {
+    animation: MessageAnimation1 300ms ease-in-out
+}
+.message:nth-child(odd) {
+    animation: MessageAnimation2 300ms ease-in-out
+}
+.msg-main {
+    font-size: 1.5rem;
+}
+.input {
+    width: 90%;
+    padding: 20px;
+    height: 1.5rem;
+    background: black;
+    caret-color: white;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    margin-top: 1.5rem;
+}
+.send-button {
+    background: rgb(97, 197, 97);
+    height: 2.5rem;
+    width: 6rem;
+    cursor: pointer;
+    transition: 300ms ease-in-out;
+}
+.send-button:hover {
+    background: rgb(255, 205, 113);
+    box-shadow: 0 0 40px 5px black;
+}
+.hidden {
+    display: none;
+}
+
+@keyframes MessageAnimation1 {
+    0%{
+        transform: translateX(-100%);
+    }
+}
+@keyframes MessageAnimation2 {
+    0%{
+        transform: translateX(100%);
+    }
+}

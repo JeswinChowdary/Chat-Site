@@ -6,20 +6,20 @@ const { Server } = require('socket.io')
 const port = 5000;
 const io = new Server(server, {
   cors: {
-    origin: ['http://localhost:5000', 'https://chat-app-by-jeswin.onrender.com']
+    origin: ['http://localhost:5000', 'https://live-chat-jeswin.railyway.app']
   }
 });
 
 
 app.use(express.static('./src'));
 
-
 io.on('connection', socket => {
-  socket.emit('chat-message', 'Someone Just Joined The Chat');
-
-  socket.on('chat-message', (msg) => {
-    socket.broadcast.emit('chat-message', msg);
-  })
+  socket.on('new-user',(userName) => {
+    socket.broadcast.emit('new-user', userName);
+  });
+  socket.on('chat-message', data => {
+    socket.broadcast.emit('chat-message', data);
+  });
 });
 
-server.listen(port, console.log(`Port: ${port}`))
+server.listen(port, console.log(`Port: ${port}`));
