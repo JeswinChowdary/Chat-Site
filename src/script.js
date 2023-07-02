@@ -31,7 +31,7 @@ function displayMessage(time, userName, msg) {
 
 function initialMessage() {
   const timeArr = new Date().toLocaleTimeString().split(':')
-  const time = timeArr[1] + ':' + timeArr[2]
+  const time = timeArr[0] + ':' + timeArr[1]
   displayMessage(time, userName, 'You joined the chat')
 } initialMessage();
 
@@ -41,7 +41,7 @@ socket.on('chat-message', data => {
 });
 socket.on('new-user', (user) => {
     const timeArr = new Date().toLocaleTimeString().split(':')
-    const time = timeArr[1] + ':' + timeArr[2]
+    const time = timeArr[0] + ':' + timeArr[1]
     displayMessage(time, 'CHAT-MODERATOR', `${user} just joined the chat.`);
 });
 socket.emit('new-user', userName);
@@ -53,7 +53,7 @@ sendButton.addEventListener('click', e => {
     }
     const msg = input.value;
     const timeArr = new Date().toLocaleTimeString().split(':');
-    const time = timeArr[1] + ':' + timeArr[2];
+    const time = timeArr[0] + ':' + timeArr[1];
 
     displayMessage(time, userName, msg);
 
