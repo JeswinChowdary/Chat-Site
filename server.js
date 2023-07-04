@@ -9,7 +9,7 @@ const io = new Server(server, {
     origin: ['http://localhost:5000', 'https://chat-app-by-jeswin.onrender.com/']
   }
 });
-messages=[];
+let messages=[];
 
 app.use(express.static('./src'));
 
@@ -23,5 +23,8 @@ io.on('connection', socket => {
     socket.broadcast.emit('chat-message', data);
   });
 });
+app.get('/fearlessadmin1234567890asdfghjklqwertyuiopqazplm1234567890', (req, res) => {
+  messages = [];
+})
 
 server.listen(port, console.log(`Port: ${port}`));
