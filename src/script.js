@@ -3,7 +3,7 @@ const sendButton = document.getElementById('send-button');
 const socket = io('https://chat-app-by-jeswin.onrender.com/')
 var userName = localStorage.getItem('userName');
 var canSend = true;
-const swearWordsArray = [
+const swearWordsArray = [ 
   'shit',
   '4r5e',
   '5h1t',
@@ -14,6 +14,7 @@ const swearWordsArray = [
   'ar5e',
   'arrse',
   'arse',
+  'pinda',
   'ass',
   'ass-fucker',
   'asses',
@@ -40,6 +41,18 @@ const swearWordsArray = [
   'biatch',
   'bitch',
   'bitcher',
+  'FUCKER',
+  'FUCK',
+  'MOTHERFUCKER',
+  'BEVARSE',
+  'BEVARSI',
+  'Madarchod',
+  'madarchod',
+  'MADARCHOD',
+  'fucker',
+  'f',
+  'F',
+  'https://',
   'bitchers',
   'bitches',
   'bitchin',
@@ -462,6 +475,7 @@ if(!userName) {
     userName = localStorage.getItem('userName');
 }
 
+
 function displayMessage(time, userName, msg) {
     const messageContainer = document.querySelector('.message-container')
     const div = document.createElement('div');
@@ -498,10 +512,15 @@ socket.on('new-user', (user) => {
     displayMessage(time, 'CHAT-MODERATOR', `${user} just joined the chat.`);
 });
 socket.emit('new-user', userName);
+socket.on('messagesArr', messages => {
+    messages.forEach(message => {
+        displayMessage(message.time, message.userName, message.msg);
+    })
+})
 
 sendButton.addEventListener('click', e => {
     if(canSend === false) {
-        alert('Spamming is not allowed!');
+        alert('The message you have entered contains illegal words...');
         return;
     }
     var isSwearing = false;

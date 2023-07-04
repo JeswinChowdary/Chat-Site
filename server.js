@@ -9,15 +9,17 @@ const io = new Server(server, {
     origin: ['http://localhost:5000', 'https://chat-app-by-jeswin.onrender.com/']
   }
 });
-
+messages=[];
 
 app.use(express.static('./src'));
 
 io.on('connection', socket => {
+  socket.emit('messagesArr', messages);
   socket.on('new-user',(userName) => {
     socket.broadcast.emit('new-user', userName);
   });
   socket.on('chat-message', data => {
+    messages.push(data);
     socket.broadcast.emit('chat-message', data);
   });
 });
