@@ -4,6 +4,25 @@ const socket = io('https://chat-app-by-jeswin.onrender.com/')
 var userName = localStorage.getItem('userName');
 var canSend = true;
 const swearWordsArray = [
+  'fuc',
+  'negroe',
+  'FUCK',
+  'MOTHERFUCKER',
+  'Madarchod',
+  'madarchod',
+  'MADARCHOD',
+  'chod',
+  'CHOD',
+  'Chod',
+  'Madarjaat',
+  'madarjaat',
+  'Madarjaat',
+  'negroi',
+  'negro',
+  'com',
+  '.com',
+  '.in',
+  'alok',
   'shit',
   '4r5e',
   '5h1t',
@@ -517,12 +536,12 @@ sendButton.addEventListener('click', e => {
         })
     })
     if(isSwearing === true) {
-        return alert('Swearing is not allowed!!');
+        return alert('The message contains words which are not allowed, please re-check what you type!');
     }
 
     displayMessage(time, userName, msg);
 
-    if(msg === '' || msg === ' ') {
+    if(msg === '' || msg === ' ' || msg.value === null) {
         alert('Please type in a message first!');
         return;
     }
@@ -535,7 +554,7 @@ sendButton.addEventListener('click', e => {
     canSend = false;
     setTimeout(() => {
         canSend = true;
-    }, 2000);
+    }, 4000);
       input.value = '';
     
 })
