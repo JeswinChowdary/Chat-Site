@@ -4,6 +4,12 @@ const socket = io('https://chat-app-by-jeswin.onrender.com/')
 var userName = localStorage.getItem('userName');
 var canSend = true;
 const swearWordsArray = [
+  'FUCK?',
+  'FUCK!',
+  'FUCKU',
+  'FUCKYOU',
+  'FUCK$',
+  'FUCK#',
   'shit',
   '4r5e',
   '5h1t',
