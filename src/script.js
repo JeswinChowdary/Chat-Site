@@ -5,6 +5,14 @@ var userName = localStorage.getItem('userName');
 var canSend = true;
 const swearWordsArray = [
   'FUCK?',
+  'nigga?',
+  'nigga',
+  'bitch?',
+  'FYCKING',
+  'fuck?',
+  'bozo',
+  'kare',
+  'fuck?',
   'FUCK!',
   'FUCKU',
   'FUCKYOU',
