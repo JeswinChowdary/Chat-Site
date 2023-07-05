@@ -544,7 +544,10 @@ sendButton.addEventListener('click', e => {
                 return isSwearing = true;
             }
         })
-    })
+    });
+    if(msg.length > 350) {
+      alert('Your message exceeds the word limit of 350');
+    }
     if(isSwearing === true) {
         return alert('The message contains words which are not allowed, please re-check what you type!');
     }
