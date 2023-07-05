@@ -20,7 +20,7 @@ body {
 .message {
     width: 100%;
     padding: 20px;
-    height: 2rem;
+    min-height: 2rem;
     background: white;
     display: flex;
     flex-direction: column;
