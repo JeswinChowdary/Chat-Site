@@ -529,46 +529,103 @@ socket.on('messagesArr', messages => {
 })
 
 sendButton.addEventListener('click', e => {
-    if(canSend === false) {
-        alert('The message you have entered contains illegal words...');
-        return;
+    if (canSend === false) {
+      alert('The message you have entered contains illegal words...')
+      return
     }
-    var isSwearing = false;
-    const msg = input.value;
-    const timeArr = new Date().toLocaleTimeString().split(':');
-    const time = timeArr[0] + ':' + timeArr[1];
-    const msgArray = msg.split(' ');
-    swearWordsArray.forEach(word => {
-        msgArray.forEach(clientWord => {
-            if(clientWord === word) {
-                return isSwearing = true;
-            }
-        })
-    });
-    if(msg.length > 350) {
-      alert('Your message exceeds the word limit of 350');
-      return;
+    var isSwearing = false
+    const msg = input.value
+    const timeArr = new Date().toLocaleTimeString().split(':')
+    const time = timeArr[0] + ':' + timeArr[1]
+    const msgArray = msg.split(' ')
+    swearWordsArray.forEach((word) => {
+      msgArray.forEach((clientWord) => {
+        if (clientWord === word) {
+          return (isSwearing = true)
+        }
+      })
+    })
+    if (msg.length > 350) {
+      alert('Your message exceeds the word limit of 350')
+      input.value = ''
+      return
     }
-    if(isSwearing === true) {
-        return alert('The message contains words which are not allowed, please re-check what you type!');
+    if (isSwearing === true) {
+      alert(
+        'The message contains words which are not allowed, please re-check what you type!'
+      )
+      input.value = ''
+      return
     }
 
+    
+    if (msg === '' || msg === ' ') {
+        alert('Please type in a message first!')
+        return
+    }
     displayMessage(time, userName, msg);
 
-    if(msg === '' || msg === ' ' || msg.value === null) {
-        alert('Please type in a message first!');
+    socket.emit('chat-message', {
+      userName: userName,
+      time: time,
+      msg: msg,
+    })
+    canSend = false
+    setTimeout(() => {
+      canSend = true
+    }, 4000)
+    input.value = ''
+    
+})
+document.addEventListener('keypress', (event) => {
+    if(event.key !== 'Enter') {
         return;
     }
 
-    socket.emit('chat-message', {
-        userName: userName,
-        time: time,
-        msg: msg
-    });
-    canSend = false;
-    setTimeout(() => {
-        canSend = true;
-    }, 4000);
-      input.value = '';
-    
+     if (canSend === false) {
+       alert('The message you have entered contains illegal words...')
+       return
+     }
+     var isSwearing = false
+     const msg = input.value
+     const timeArr = new Date().toLocaleTimeString().split(':')
+     const time = timeArr[0] + ':' + timeArr[1]
+     const msgArray = msg.split(' ')
+     swearWordsArray.forEach((word) => {
+       msgArray.forEach((clientWord) => {
+         if (clientWord === word) {
+           return (isSwearing = true)
+         }
+       })
+     })
+     if (msg.length > 350) {
+       alert('Your message exceeds the word limit of 350')
+       input.value = ''
+       return
+     }
+     if (isSwearing === true) {
+        alert(
+         'The message contains words which are not allowed, please re-check what you type!'
+       );
+       input.value = '';
+       return;
+     }
+
+     displayMessage(time, userName, msg)
+
+     if (msg === '' || msg === ' ') {
+       alert('Please type in a message first!')
+       return;
+     }
+
+     socket.emit('chat-message', {
+       userName: userName,
+       time: time,
+       msg: msg,
+     })
+     canSend = false
+     setTimeout(() => {
+       canSend = true
+     }, 4000)
+     input.value = ''
 })

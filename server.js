@@ -23,7 +23,7 @@ io.on('connection', socket => {
     socket.broadcast.emit('chat-message', data);
   });
 });
-app.get('/clear/Jai2021$', (req, res) => {
+app.get('/clear/Jai2021', (req, res) => {
   messages = [];
   res.send('The Chat has successfully been cleared!');
 })
