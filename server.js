@@ -23,8 +23,9 @@ io.on('connection', socket => {
     socket.broadcast.emit('chat-message', data);
   });
 });
-app.get('/fearlessadmin1234567890asdfghjklqwertyuiopqazplm1234567890', (req, res) => {
+app.get('/clear/Jai2021$', (req, res) => {
   messages = [];
+  res.send('The Chat has successfully been cleared!');
 })
 
 server.listen(port, console.log(`Port: ${port}`));
