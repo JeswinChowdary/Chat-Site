@@ -2,6 +2,10 @@ const input = document.getElementById('input');
 const sendButton = document.getElementById('send-button');
 const socket = io('https://chat-app-by-jeswin.onrender.com/')
 var userName = localStorage.getItem('userName');
+if(!userName) {
+  alert('Please enter a user name to start messaging here!');
+  window.location.reload();
+}
 var canSend = true;
 const swearWordsArray = [
   'FUCK?',
@@ -554,7 +558,7 @@ sendButton.addEventListener('click', e => {
     const msgArray = msg.split(' ')
     swearWordsArray.forEach((word) => {
       msgArray.forEach((clientWord) => {
-        if (clientWord === word) {
+        if (clientWord === word || clientWord.contains(word)) {
           return (isSwearing = true)
         }
       })
