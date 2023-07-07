@@ -496,6 +496,7 @@ const swearWordsArray = [
   'willy',
   'xrated',
   'xxx',
+  'Negroe'
 ]
 
 if(!userName) {
@@ -523,6 +524,10 @@ function displayMessage(time, userName, msg) {
     window.scroll(0, height);
 
 }
+
+
+
+// String to test swear words filter
 
 function initialMessage() {
   const timeArr = new Date().toLocaleTimeString().split(':')
@@ -552,17 +557,14 @@ sendButton.addEventListener('click', e => {
       return
     }
     var isSwearing = false
-    const msg = input.value
+    const msg = input.value;
     const timeArr = new Date().toLocaleTimeString().split(':')
     const time = timeArr[0] + ':' + timeArr[1]
-    const msgArray = msg.split(' ')
-    swearWordsArray.forEach((word) => {
-      msgArray.forEach((clientWord) => {
-        if (clientWord === word || clientWord.contains(word)) {
-          return (isSwearing = true)
-        }
-      })
-    })
+    swearWordsArray.forEach(word => {
+      if(msg.includes(word)) {
+        return isSwearing = true;
+      }
+    });
     if (msg.length > 350) {
       alert('Your message exceeds the word limit of 350')
       input.value = ''
@@ -609,13 +611,11 @@ document.addEventListener('keypress', (event) => {
      const timeArr = new Date().toLocaleTimeString().split(':')
      const time = timeArr[0] + ':' + timeArr[1]
      const msgArray = msg.split(' ')
-     swearWordsArray.forEach((word) => {
-       msgArray.forEach((clientWord) => {
-         if (clientWord === word) {
-           return (isSwearing = true)
-         }
-       })
-     })
+     swearWordsArray.forEach(word => {
+      if(msg.includes(word)) {
+        return isSwearing = true;
+      }
+     });
      if (msg.length > 350) {
        alert('Your message exceeds the word limit of 350')
        input.value = ''
