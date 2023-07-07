@@ -78,8 +78,6 @@ const swearWordsArray = [
   'madarchod',
   'MADARCHOD',
   'fucker',
-  'f',
-  'F',
   'https://',
   'bitchers',
   'bitches',
